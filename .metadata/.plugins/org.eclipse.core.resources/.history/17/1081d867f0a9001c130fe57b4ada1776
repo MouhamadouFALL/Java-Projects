@@ -1,0 +1,13 @@
+package com.sgouv.webclient;
+
+import com.sgouv.service.Iservice;
+
+public class WebClient {
+
+	private Iservice service;
+	
+	public WebClient() {
+		
+	}
+	
+}

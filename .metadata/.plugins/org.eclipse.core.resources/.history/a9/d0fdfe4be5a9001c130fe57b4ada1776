@@ -1,0 +1,27 @@
+package com.sgouv.bankmodules;
+
+import javax.swing.JOptionPane;
+
+public class BankModules implements IBankService, ITransfertRequest {
+
+	@Override
+	public void importerFichierVirement(String path) {
+		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(null, " importer un fichier ", arg2, arg3);
+		
+	}
+
+	@Override
+	public String genererFichierViremet() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void effectuerVirement(String numeroComptSrc, String numeroCompteDes) {
+		// TODO Auto-generated method stub
+		JOptionPane.showConfirmDialog(null, " effectuer un virement  ", " Virement effectuer avec succes ! ", JOptionPane.OK_OPTION);
+		
+	}
+
+}

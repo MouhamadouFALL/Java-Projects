@@ -15,6 +15,8 @@ public class UMApplication extends Application {
 	private BorderPane mainUI;
 	private AnchorPane userUI;
 	
+	private DataSource dataSource;
+	
 	private static UMApplication instance;
 	
 	
@@ -28,7 +30,13 @@ public class UMApplication extends Application {
 		
 		instance = this;
 		this.primaryStage = primaryStage;
-		this.primaryStage.setTitle("User Management System");
+		this.primaryStage.setTitle("User Management Application");
+		
+		dataSource = new DataSource();
+		
+		
+		initRootLayout();
+		showUserUI();
 		
 	}
 	
@@ -52,12 +60,32 @@ public class UMApplication extends Application {
 	public void showUserUI() {
 		
 		try {
-			userUI = (AnchorPane) FXMLLoader.load(getClass().getResource("ui/UserUI"));
+			// Load UserUI
+			userUI = (AnchorPane) FXMLLoader.load(getClass().getResource("ui/UserUI.fxml"));
+			
+			// Set userUI into the center of root Layout
+			mainUI.setCenter(userUI);
+			
+			
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
+
+	public Stage getPrimaryStage() {
+		return primaryStage;
+	}
+
+
+	public DataSource getDataSource() {
+		return dataSource;
+	}
+	
+	public static UMApplication getInstance() {
+		return instance;
+	}
 	
 }

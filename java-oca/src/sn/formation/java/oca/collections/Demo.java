@@ -7,8 +7,6 @@ import java.util.Iterator;
 public class Demo {
 
 	public static void main(String[] args) {
-
-
 		
 		Collection<String> fruits = new ArrayList<String>();
 		

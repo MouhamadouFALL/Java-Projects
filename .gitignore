@@ -1,11 +1,12 @@
 
 
-./.metadata
-./.recommenders
-./app-manager-user/.settings
-./architectureLogicielle/.settings
-./java-oca/.settings
-./systeme-de-gestion-des-ordres-de-virement-app/.settings
+.metadata
+.recommenders
+app-manager-user/.settings
+architectureLogicielle/.settings
+java-oca/.settings
+systeme-de-gestion-des-ordres-de-virement-app/.settings
+systeme-de-gestion-des-ordres-de-virements
 
-./systeme-de-gestion-des-ordres-de-virements
+
 

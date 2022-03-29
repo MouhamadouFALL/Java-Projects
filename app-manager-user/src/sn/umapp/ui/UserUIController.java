@@ -45,7 +45,55 @@ public class UserUIController {
 		
 		// add observable list data to the Table
 		userTable.setItems(UMApplication.getInstance().getDataSource().getUsers());
+		
+		// Clear the user details form
+		displayUserDetails(null);
+		
+		// add a ChangeListener to the userTable
+		addChangeListener();
 	}
+	
+	
+	/**
+	 * Fills all text fields to shows details about the user
+	 * If the specified user is null all text fields are cleared
+	 * 
+	 * @param user
+	 */
+	private void displayUserDetails(User user) {
+		
+		if (user != null) {
+			// Fill the labels with info from the User object
+			this.nomLabel.setText(user.getNom().get());
+			this.prenomLabel.setText(user.getPrenom().get());
+			this.emailLabel.setText(user.getEmail().get());
+			this.telephoneLabel.setText(user.getTelephone().get());
+			this.loginLabel.setText(user.getLogin().get());
+			this.passwordLabel.setText(user.getPassword().get());
+			this.roleLabel.setText(user.getRole().get());
+		}
+		else {
+			// User is null, remove all the text
+			this.nomLabel.setText(null);
+			this.prenomLabel.setText(null);
+			this.emailLabel.setText(null);
+			this.telephoneLabel.setText(null);
+			this.loginLabel.setText(null);
+			this.passwordLabel.setText(null);
+			this.roleLabel.setText(null);
+		}
+	}
+	
+	/**
+	 * Surveille les changements sur la table et affiche les informations dans le formulaire
+	 */
+	private void addChangeListener() {
+		
+		userTable.getSelectionModel().selectedItemProperty().addListener(
+				(observable, oldValue, newValue) ->  displayUserDetails(newValue)
+				);
+	}
+	
 	
 
 }

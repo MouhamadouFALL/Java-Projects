@@ -1,6 +1,8 @@
 package sn.umapp.ui;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -94,6 +96,31 @@ public class UserUIController {
 				);
 	}
 	
+	/**
+	 * Called when the user clicks one the delete button
+	 */
+	@FXML
+	private void handleDeleteUser() {
+		// recuperer l'index de l'utilisateur selectionné puis le supprimer de la liste
+		int selectedIndex = userTable.getSelectionModel().getSelectedIndex();
+		if (selectedIndex >= 0) {
+			userTable.getItems().remove(selectedIndex);
+			
+		}
+		else {
+			// si aucun utilisateur n'est sélectionné afficher un message alerte
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Warning ...");
+			alert.setHeaderText("Alerte !");
+			alert.setContentText("Veillez selectionner l'utilisateur à supprimé");
+			
+			alert.showAndWait();
+		}
+		
+		// actualiser le formulaire de details utilisateur
+		//displayUserDetails(null);
+		
+	}
 	
 
 }

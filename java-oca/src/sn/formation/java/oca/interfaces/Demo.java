@@ -9,6 +9,11 @@ public class Demo {
 		User user2 = new User("Bouh");
 		
 		System.out.println(user2.compareTo(user1));
+		
+		String nom = " ";
+		System.out.println(nom.equals(null));
+		System.out.println(nom.isEmpty());
+		System.out.println(nom.length());
 
 	}
 

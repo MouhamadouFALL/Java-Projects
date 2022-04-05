@@ -88,7 +88,7 @@
                   </GridPane>
                   <FlowPane alignment="CENTER_RIGHT" layoutX="78.0" layoutY="320.0" prefHeight="78.0" prefWidth="373.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="320.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Nouveau">
+                        <Button mnemonicParsing="false" onAction="#handleNewUSer" text="Nouveau">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -96,7 +96,7 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                            </FlowPane.margin>
                         </Button>
-                        <Button mnemonicParsing="false" text="Modifier">
+                        <Button mnemonicParsing="false" onAction="#handleUpdateUser" text="Modifier">
                            <FlowPane.margin>
                               <Insets right="5.0" top="5.0" />
                            </FlowPane.margin>
@@ -104,7 +104,7 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" text="Supprimer">
+                        <Button mnemonicParsing="false" onAction="#handleDeleteUser" text="Supprimer">
                            <font>
                               <Font size="14.0" />
                            </font>

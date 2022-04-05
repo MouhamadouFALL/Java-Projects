@@ -59,18 +59,19 @@ public class UserEditUIController {
 	//Called when the clicks on button valider
 	@FXML
 	private void handleValider() {
-		
-		user.setNom(new SimpleStringProperty(nomField.getText()));
-		user.setPrenom(new SimpleStringProperty(prenomField.getText()));
-		user.setEmail(new SimpleStringProperty(emailField.getText()));
-		user.setTelephone(new SimpleStringProperty(telephoneField.getText()));
-		user.setLogin(new SimpleStringProperty(loginField.getText()));
-		user.setPassword(new SimpleStringProperty(passwordField.getText()));
-		user.setRole(new SimpleStringProperty(roleComboBox.getSelectionModel().getSelectedItem()));
-		
-		validerClicked = true;
-		dialogStage.close();
-		
+		if (isInputValid()) {
+			
+			user.setNom(new SimpleStringProperty(nomField.getText()));
+			user.setPrenom(new SimpleStringProperty(prenomField.getText()));
+			user.setEmail(new SimpleStringProperty(emailField.getText()));
+			user.setTelephone(new SimpleStringProperty(telephoneField.getText()));
+			user.setLogin(new SimpleStringProperty(loginField.getText()));
+			user.setPassword(new SimpleStringProperty(passwordField.getText()));
+			user.setRole(new SimpleStringProperty(roleComboBox.getSelectionModel().getSelectedItem()));
+			
+			validerClicked = true;
+			dialogStage.close();
+		}	
 	}
 	
 	// Called when the user clicks on Annuler button
@@ -84,13 +85,14 @@ public class UserEditUIController {
 	private boolean isInputValid() {
 		String errorMessage = "";
 		
-		if (nomField.getText() == null || nomField.getText().isEmpty()) {
+		if (nomField.getText() == null || nomField.getText().length() == 0) {
 			errorMessage += "Le nom n'est pas renseigné ! \n";
-			
 		}
 		if (emailField.getText() == null || emailField.getText().isEmpty()) {
 			errorMessage += "L'email n'est pas renseigné ! \n";
-			
+		}
+		if (telephoneField.getText() == null || telephoneField.getText().isEmpty()) {
+			errorMessage += "Le numero de telephone n'est pas renseigné ! \n";
 		}
 		
 		if (errorMessage.isEmpty()) return true;
@@ -102,14 +104,13 @@ public class UserEditUIController {
 			alert.setHeaderText("Veillez remplir tous les champs svp !");
 			alert.setContentText(errorMessage);
 			
-			alert.show();
+			alert.showAndWait();
 			
 			return false;
 		}
 	}
 	
 	public boolean isValiderClicked() {
-		
 		return validerClicked;
 	}
 }

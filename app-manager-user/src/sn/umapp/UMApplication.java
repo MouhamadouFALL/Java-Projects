@@ -7,7 +7,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import sn.umapp.model.User;
+import sn.umapp.ui.UserEditUIController;
 
 public class UMApplication extends Application {
 	
@@ -71,6 +74,37 @@ public class UMApplication extends Application {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+	
+	// Afficher l'interface d'édition des utilisateurs
+	public boolean showUserEditUI(User user) {
+		
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(UMApplication.class.getResource("ui/UserEditUI.fxml"));
+			AnchorPane page = (AnchorPane)loader.load();
+			
+			// create the dialogue stage
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Editer un utilisateur ( Ajouter - Modifier )");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			dialogStage.setScene(new Scene(page));
+			
+			UserEditUIController controller = loader.getController();
+			controller.setDialogStage(dialogStage);
+			controller.setUser(user); // Set the User into the controller
+			
+			// show the dialog and wait until the user closes it 
+			dialogStage.showAndWait();
+			
+			return controller.isValiderClicked();
+			
+			
+		} catch (IOException e) {
+			System.err.println(e.getMessage());
+			return false;
 		}
 	}
 

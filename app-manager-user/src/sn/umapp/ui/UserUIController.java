@@ -116,11 +116,42 @@ public class UserUIController {
 			
 			alert.showAndWait();
 		}
-		
-		// actualiser le formulaire de details utilisateur
-		//displayUserDetails(null);
-		
 	}
 	
+	@FXML
+	private void handleNewUSer() {
+		User user = new User();
+		
+		boolean validerClicked = UMApplication.getInstance().showUserEditUI(user);
+		if (validerClicked) {
+			UMApplication.getInstance().getDataSource().getUsers().add(user);
+		}
+	}
+	
+	@FXML
+	private void handleUpdateUser() {
+		
+		User selectedUser = userTable.getSelectionModel().getSelectedItem();
+		int indexUser = userTable.getSelectionModel().getSelectedIndex();
+		
+		if (selectedUser != null) {
+			boolean validerClicked = UMApplication.getInstance().showUserEditUI(selectedUser);
+			if (validerClicked) {
+				displayUserDetails(selectedUser);
+				userTable.getItems().remove(indexUser);
+				userTable.getItems().add(indexUser, selectedUser);
+				//UMApplication.getInstance().getDataSource().getUsers().add(indexUser, selectedUser);
+			}
+		}
+		else {
+			// Nothing selected
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Aucune sélection");
+			alert.setHeaderText("Aucun utilisateur n'a été sélectionné !");
+			alert.setContentText("Veillez choisir un user svp !");
+			
+			alert.showAndWait();
+		}
+	}
 
 }

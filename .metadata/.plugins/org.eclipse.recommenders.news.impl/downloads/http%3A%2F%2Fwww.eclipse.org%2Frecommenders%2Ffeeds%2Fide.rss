@@ -14,7 +14,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta name="keywords" content="Archived, old, closed, suspended, shutdown, closed"/>
     <link rel="shortcut icon" href="/eclipse.org-common/themes/solstice/public/images/favicon.ico"/>
     <title>Archived Projects | The Eclipse Foundation</title>
-    <link rel="preconnect stylesheet" href="/eclipse.org-common/themes/solstice/public/stylesheets/quicksilver.min.css?v0.177"/>
+    <link rel="preconnect stylesheet" href="/eclipse.org-common/themes/solstice/public/stylesheets/quicksilver.min.css?v0.179"/>
 <meta name="description" content="The Eclipse Foundation - home to a global community, the Eclipse IDE, Jakarta EE and over 415 open source projects, including runtimes, tools and frameworks."/>
 <meta property="og:description" content="The Eclipse Foundation - home to a global community, the Eclipse IDE, Jakarta EE and over 415 open source projects, including runtimes, tools and frameworks."/>
 <meta property="og:image" content="https://www.eclipse.org/eclipse.org-common/themes/solstice/public/images/logo/eclipse-foundation-200x200.png"/>
@@ -119,6 +119,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p><a href="http://archive.eclipse.org/archived_projects/atf.tgz">ATF</a> project.  Archived: May 2020</p>
         <p><a href="http://archive.eclipse.org/archived_projects/athena.tgz">Athena</a> project.  Archived: January 2012</p>
         <p><a href="http://archive.eclipse.org/archived_projects/amw.tgz">AMW</a> project.  Archived: March 2015</p>
+        <p><a href="http://archive.eclipse.org/archived_projects/avsys.tgz">Avsys</a> project.  Archived: February 2022</p>
+        <p><a href="http://archive.eclipse.org/archived_projects/bridgeiot.tgz" alt="BridgeIoT Archive" >BridgeIoT</a> project. Archived: February 2022.</p>
         <p><a href="http://archive.eclipse.org/archived_projects/blinki.tgz" alt="DSDP Blinki Archive" >DSDP Blinki</a> project. Archived: October 2010.</p>
         <p><a href="http://archive.eclipse.org/archived_projects/bpmn.tgz">BPMN</a> project.  Archived: January 2012</p>
         <p><a href="http://archive.eclipse.org/archived_projects/buckminster.tgz">Buckminster</a> project.  Archived: February 2019</p>
@@ -171,6 +173,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p><a href="http://archive.eclipse.org/archived_projects/krikkit.tgz">Krikkit</a> project.  Archived: October 2017</p>
         <p><a href="http://archive.eclipse.org/archived_projects/laszlo-project.tar.gz">Laszlo</a> project.  Archived: December 2006</p>
         <p><a href="http://archive.eclipse.org/archived_projects/lepido-project.tar.gz">Lepido</a> project.  Archived: June 2006</p>
+        <p><a href="http://archive.eclipse.org/archived_projects/libra.tar.gz">Libra</a> project.  Archived: February 2022</p>
         <p><a href="http://archive.eclipse.org/archived_projects/maynstall.tgz">Maynstall</a> project.  Archived: January 2011</p>
         <p><a href="http://archive.eclipse.org/archived_projects/mddi-archive.tar.gz" alt="MDDi Archive" >MDDi</a> project. Archived: August 2008.</p>
         <p><a href="http://archive.eclipse.org/archived_projects/mihini.tgz">Mihini</a> project.  Archived: September 2015</p>
@@ -222,6 +225,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p><a href="http://archive.eclipse.org/archived_projects/stp.tgz">STP</a> project.  Archived: September 2012 </p>
         <p><a href="http://archive.eclipse.org/archived_projects/swordfish.tgz">Swordfish</a> project.  Archived: January 2014 </p>
         <p><a href="http://archive.eclipse.org/archived_projects/systemfocus.tgz">Systemfocus</a> project.  Archived: December 2021 </p>
+        <p><a href="http://archive.eclipse.org/archived_projects/tangleid.tgz" alt="tangleid archive" >Tangle ID</a> project. Archived: February 2022.</p>
         <p><a href="http://archive.eclipse.org/archived_projects/tanglemktplaces.tgz" alt="tanglemktplaces archive" >Tangle Marketplaces</a> project. Archived: February 2022.</p>
         <p><a href="http://archive.eclipse.org/archived_projects/tcs.tgz" alt="TCS archive" >TCS</a> project. Archived: November 2012.</p>
         <p><a href="http://archive.eclipse.org/archived_projects/temporality.tgz" alt="Temporality archive" >Temporality</a> project. Archived: November 2012.</p>
@@ -436,7 +440,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </footer>
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="/eclipse.org-common/themes/solstice/public/javascript/main.min.js?var=0.0.176"></script>
+<script src="/eclipse.org-common/themes/solstice/public/javascript/main.min.js?var=0.0.177"></script>
 
 </body>
 </html>

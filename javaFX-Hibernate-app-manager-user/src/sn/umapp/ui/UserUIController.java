@@ -1,11 +1,15 @@
 package sn.umapp.ui;
 
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import sn.umapp.UMApplication;
 import sn.umapp.model.User;
 
@@ -32,8 +36,17 @@ public class UserUIController {
 	@FXML
 	private Label roleLabel;
 	
+	@FXML
+	private TextField rechercheTextField;
+	
+	ObservableList<User> users;
+	
+	
 	// Constructeur
-	public UserUIController() {}
+	public UserUIController() {
+		// charger les utilisateurs dans la collection users
+		ObservableList<User> users = UMApplication.getInstance().getDataSource().getUsers();
+	}
 	
 	/*
 	 * Initializes the controller class. This method is automatically called 
@@ -46,8 +59,44 @@ public class UserUIController {
 		prenomColumn.setCellValueFactory(cellData -> cellData.getValue().getPrenom());
 		
 		
+		// 1-Envelopper ObservableList dans un FilteredList ( Afficher initialement toutes les données )
+		FilteredList <User> filteredData = new FilteredList<>(users, u -> true);
+		
+		// 2 - Définir le filtre prédicat chaque fois que le filtre change
+		rechercheTextField.textProperty().addListener(
+				(observable, oldValue, newValue) -> {
+					filteredData.setPredicate(user -> {
+						// If rechercheTextField is empty, display all users
+						if (newValue == null || newValue.isEmpty()) {
+							return true;
+						}
+						
+						// Compare first name and last name of every user with the filter text
+						String chaineRecherche = newValue.toLowerCase();
+						
+						if (user.getPrenom().get().toLowerCase().contains(chaineRecherche)) {
+							return true; // Filter matches first name == filtre correspond au prenom
+						}
+						else if (user.getNom().get().toLowerCase().contains(chaineRecherche)) {
+							return true; // Filter matches last name == filtre correspond au nom
+						}
+						return false; //Does not match
+					});
+				}
+			);
+		
+		// 3-Envelopper le FilteredList dans un SortedList.
+		SortedList<User> sortedData = new SortedList<>(filteredData);
+		
+		
+		// 4-  Bind The SortedList comparator to the TableView comparator
+		sortedData.comparatorProperty().bind(userTable.comparatorProperty());
+		
+		//5- Add sorted (and filtered) data to the table
+		userTable.setItems(sortedData);
+		
 		// add observable list data to the Table
-		userTable.setItems(UMApplication.getInstance().getDataSource().getUsers());
+		//userTable.setItems(UMApplication.getInstance().getDataSource().getUsers());
 		
 		// Clear the user details form
 		displayUserDetails(null);
@@ -105,8 +154,7 @@ public class UserUIController {
 		// recuperer l'index de l'utilisateur selectionné puis le supprimer de la liste
 		int selectedIndex = userTable.getSelectionModel().getSelectedIndex();
 		if (selectedIndex >= 0) {
-			userTable.getItems().remove(selectedIndex);
-			
+			users.remove(selectedIndex);
 		}
 		else {
 			// si aucun utilisateur n'est sélectionné afficher un message alerte
@@ -125,7 +173,7 @@ public class UserUIController {
 		
 		boolean validerClicked = UMApplication.getInstance().showUserEditUI(user);
 		if (validerClicked) {
-			UMApplication.getInstance().getDataSource().getUsers().add(user);
+			users.add(user);
 		}
 	}
 	

@@ -1,7 +1,7 @@
 
 
-./.metadata
-./.recommenders
+.metadata/
+.recommenders/
 app-manager-user/.settings
 architectureLogicielle/.settings
 java-oca/.settings

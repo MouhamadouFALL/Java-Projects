@@ -45,6 +45,7 @@ public class UserUIController {
 		nomColumn.setCellValueFactory(cellData -> cellData.getValue().getNom());
 		prenomColumn.setCellValueFactory(cellData -> cellData.getValue().getPrenom());
 		
+		
 		// add observable list data to the Table
 		userTable.setItems(UMApplication.getInstance().getDataSource().getUsers());
 		
@@ -138,9 +139,7 @@ public class UserUIController {
 			boolean validerClicked = UMApplication.getInstance().showUserEditUI(selectedUser);
 			if (validerClicked) {
 				displayUserDetails(selectedUser);
-				userTable.getItems().remove(indexUser);
-				userTable.getItems().add(indexUser, selectedUser);
-				//UMApplication.getInstance().getDataSource().getUsers().add(indexUser, selectedUser);
+				userTable.refresh();
 			}
 		}
 		else {

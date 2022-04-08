@@ -1,14 +1,9 @@
 
 
-/.metadata/
-/.recommenders/
-javaFX-Hibernate-app-manager-user/.settings/**
-architectureLogicielle/.settings/**
+.metadata
+.recommenders
+
+architectureLogicielle/.settings
 java-oca/.settings
-systeme-de-gestion-des-ordres-de-virement-app/.settings
-systeme-de-gestion-des-ordres-de-virements
+javaFX-Hibernate-app-manager-user/.settings
 
-
-
-/.metadata/
-/.recommenders/

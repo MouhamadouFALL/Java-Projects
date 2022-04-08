@@ -3,7 +3,7 @@
 bin/
 
 *.log
-*
-!src
 
-!.gitignore
+.classpath
+.project
+build.fxbuild

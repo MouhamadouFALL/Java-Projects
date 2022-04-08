@@ -9,6 +9,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import sn.umapp.db.JDBCConnection;
+import sn.umapp.db.UMADBException;
 import sn.umapp.model.User;
 import sn.umapp.ui.UserEditUIController;
 
@@ -25,6 +27,17 @@ public class UMApplication extends Application {
 	
 	public static void main(String[] args) {
 		launch(args);
+		
+		try {
+			JDBCConnection.getInstance().open();
+			
+			System.out.println("Connexion à la base OK !");
+			
+			JDBCConnection.getInstance().close();
+		}
+		catch (UMADBException e) {
+			System.err.println(e.getMessage());
+		}
 	}
 	
 

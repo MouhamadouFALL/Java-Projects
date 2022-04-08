@@ -45,7 +45,7 @@ public class UserUIController {
 	// Constructeur
 	public UserUIController() {
 		// charger les utilisateurs dans la collection users
-		ObservableList<User> users = UMApplication.getInstance().getDataSource().getUsers();
+		users = UMApplication.getInstance().getDataSource().getUsers();
 	}
 	
 	/*

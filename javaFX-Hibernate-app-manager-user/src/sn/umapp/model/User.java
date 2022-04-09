@@ -5,6 +5,8 @@ import javafx.beans.property.StringProperty;
 
 public class User {
 
+	private Integer idUser;
+	
 	private StringProperty nom;
 	private StringProperty prenom;
 	private StringProperty email;
@@ -14,19 +16,26 @@ public class User {
 	private StringProperty role;
 	
 	
-	public User(String nom, String prenom, String email, 
+	public User(Integer idUser, String nom, String prenom, String email,
 			String telephone, Role role) {
+		
+		this.idUser = idUser;
 		
 		this.nom = new SimpleStringProperty(nom);
 		this.prenom = new SimpleStringProperty(prenom);
 		this.email = new SimpleStringProperty(email);
 		this.telephone = new SimpleStringProperty(telephone);
+		
 		this.role = new SimpleStringProperty(role.getValue());
 		
-		// default login and password 
-		this.login = new SimpleStringProperty(prenom.trim().toLowerCase() + "." 
-														+ nom.trim().toLowerCase());
+		this.login = new SimpleStringProperty(prenom.trim().toLowerCase() + "." + nom.trim().toLowerCase());
 		this.password = new SimpleStringProperty("passer");
+	}
+
+
+	public User(String nom, String prenom, String email, 
+			String telephone, Role role) {
+		this(null, nom, prenom, email, telephone, role.SIMPLE_USER);
 	}
 
 
@@ -39,6 +48,16 @@ public class User {
 	
 	//////////////////////////// genered getters and setters ///////////////////////////////////
 	
+	public Integer getIdUser() {
+		return idUser;
+	}
+
+
+	public void setIdUser(Integer idUser) {
+		this.idUser = idUser;
+	}
+
+
 	public StringProperty getNom() {
 		return nom;
 	}
@@ -107,9 +126,6 @@ public class User {
 	public void setRole(StringProperty role) {
 		this.role = role;
 	}
-	
-	
-	
 	
 	
 }

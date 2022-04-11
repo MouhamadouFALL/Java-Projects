@@ -29,25 +29,31 @@ public class User {
 	}
 	
 	
-	public User(Integer idUser, String nom, String prenom, String email,
-			String telephone, String role) {
+	public User(String nom, String prenom, String email,
+			String telephone, String login, String password, String role) {
 		
-		this(idUser, nom, prenom, email, telephone, (prenom.trim().toLowerCase() + "." + nom.trim().toLowerCase()), "passer", role);
-		
+		this.nom = new SimpleStringProperty(nom);
+		this.prenom = new SimpleStringProperty(prenom);
+		this.email = new SimpleStringProperty(email);
+		this.telephone = new SimpleStringProperty(telephone);
+		this.login = new SimpleStringProperty(login);
+		this.password = new SimpleStringProperty(password);
+		this.role = new SimpleStringProperty(role);	
 	}
-
 
 	public User(String nom, String prenom, String email, 
 			String telephone, String role) {
-		this(null, nom, prenom, email, telephone, role);
+		
+		this.nom = new SimpleStringProperty(nom);
+		this.prenom = new SimpleStringProperty(prenom);
+		this.email = new SimpleStringProperty(email);
+		this.telephone = new SimpleStringProperty(telephone);
+		this.login = new SimpleStringProperty(prenom.trim().toLowerCase() + "." + nom.trim().toLowerCase());
+		this.password = new SimpleStringProperty("passer");
+		this.role = new SimpleStringProperty(role);
 	}
 
-
-	public User() {
-		this("", "", "", "", Role.SIMPLE_USER.getValue());
-		this.login = new SimpleStringProperty("");
-		this.password = new SimpleStringProperty("");
-	}
+	public User() {}
 	
 	
 	//////////////////////////// genered getters and setters ///////////////////////////////////

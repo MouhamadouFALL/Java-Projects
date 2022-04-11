@@ -59,6 +59,7 @@ public class UserEditUIController {
 	//Called when the clicks on button valider
 	@FXML
 	private void handleValider() {
+		
 		if (isInputValid()) {
 			
 			user.setNom(new SimpleStringProperty(nomField.getText()));

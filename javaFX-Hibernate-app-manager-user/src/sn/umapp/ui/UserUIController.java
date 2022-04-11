@@ -10,7 +10,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import sn.umapp.DataSource;
 import sn.umapp.UMApplication;
+import sn.umapp.db.UMADBException;
+import sn.umapp.db.dao.UserDaoImpl;
 import sn.umapp.model.User;
 
 public class UserUIController {
@@ -41,11 +44,13 @@ public class UserUIController {
 	
 	ObservableList<User> users;
 	
+	DataSource source;
 	
 	// Constructeur
 	public UserUIController() {
 		// charger les utilisateurs dans la collection users
-		users = UMApplication.getInstance().getDataSource().getUsers();
+		source = UMApplication.getInstance().getDataSource();
+		users = source.getUsers();
 	}
 	
 	/*
@@ -142,7 +147,9 @@ public class UserUIController {
 	private void addChangeListener() {
 		
 		userTable.getSelectionModel().selectedItemProperty().addListener(
+
 				(observable, oldValue, newValue) ->  displayUserDetails(newValue)
+				
 				);
 	}
 	
@@ -151,10 +158,28 @@ public class UserUIController {
 	 */
 	@FXML
 	private void handleDeleteUser() {
+		
 		// recuperer l'index de l'utilisateur selectionné puis le supprimer de la liste
 		int selectedIndex = userTable.getSelectionModel().getSelectedIndex();
+		User selectedUser = userTable.getSelectionModel().getSelectedItem();
+		
 		if (selectedIndex >= 0) {
-			users.remove(selectedIndex);
+			
+			//int idUser = userTable.getItems().get(selectedIndex).getIdUser();
+			
+			try {
+				
+				source.deleteUser(selectedUser.getIdUser());
+				//source.deleteUser(idUser);
+				
+				users.remove(selectedIndex);
+				
+				
+			} 
+			catch (UMADBException e) {
+				System.err.println(e.getMessage());
+			}
+			
 		}
 		else {
 			// si aucun utilisateur n'est sélectionné afficher un message alerte
@@ -172,8 +197,18 @@ public class UserUIController {
 		User user = new User();
 		
 		boolean validerClicked = UMApplication.getInstance().showUserEditUI(user);
+		
 		if (validerClicked) {
-			users.add(user);
+			
+			try {
+				
+				source.add(user);
+				users.add(user);
+				
+			} 
+			catch (UMADBException e) {
+				System.err.println(e.getMessage());
+			}
 		}
 	}
 	

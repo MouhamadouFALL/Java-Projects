@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import sn.umapp.db.JDBCConnection;
@@ -32,8 +31,10 @@ public class UserDaoImpl implements IUserDao{
 			preparedStatement.setString(7, user.getRole().get());
 			
 			// retourne un boolean
-			Boolean res = preparedStatement.execute();
+			//Boolean res = preparedStatement.execute();
 			
+			// pour les SQL statement
+			int numLigne = preparedStatement.executeUpdate();
 			// retourne un ResultSet
 			//ResultSet resultset = preparedStatement.executeQuery();
 			
@@ -47,7 +48,7 @@ public class UserDaoImpl implements IUserDao{
 	@Override
 	public User read(Integer id) throws UMADBException {
 		
-		String query = "select * from t_users where id=?";
+		String query = "select * from t_users where id_user=?";
 		
 		try {
 			Connection conn = JDBCConnection.getInstance().open();
@@ -73,6 +74,8 @@ public class UserDaoImpl implements IUserDao{
 				user = new User(idUser, nom, prenom, email, telephone, login, password, role);
 			}
 			
+			JDBCConnection.getInstance().close();
+			
 			return user;
 		
 		}
@@ -84,14 +87,51 @@ public class UserDaoImpl implements IUserDao{
 	@Override
 	public void update(User user) throws UMADBException {
 		
-		String query = "update set nom=?, prenom=?";
+		String query = "update t_users set nom=?, prenom=?, email=?, telephone=?, login=?, password=?, role=? where id_user=?";
+		
+		try {
+			
+			Connection conn = JDBCConnection.getInstance().open();
+			PreparedStatement preparedStatement = conn.prepareStatement(query);
+			
+			preparedStatement.setString(1, user.getNom().get());
+			preparedStatement.setString(2, user.getPrenom().get());
+			preparedStatement.setString(3, user.getEmail().get());
+			preparedStatement.setString(4, user.getTelephone().get());
+			preparedStatement.setString(5, user.getLogin().get());
+			preparedStatement.setString(6, user.getPassword().get());
+			preparedStatement.setString(7, user.getRole().get());
+			
+			preparedStatement.executeUpdate();
+			
+			JDBCConnection.getInstance().close();
+			
+		}
+		catch (SQLException e) {
+			throw new UMADBException("ERROR : " + e.getClass() + " : " + e.getMessage());
+		}
 		
 	}
 
 	@Override
 	public void delete(Integer id) throws UMADBException {
-		// TODO Auto-generated method stub
 		
+		String query = "delete from t_users where id_user=?";
+		
+		try {
+			
+			Connection conn = JDBCConnection.getInstance().open();
+			PreparedStatement preparedStatement = conn.prepareStatement(query);
+			
+			preparedStatement.setInt(1, id);
+			
+			preparedStatement.executeUpdate();
+			
+			JDBCConnection.getInstance().close();
+		}
+		catch (SQLException e) {
+			throw new UMADBException("ERROR : " + e.getClass() + " : " + e.getMessage());
+		}
 	}
 
 	@Override
@@ -109,7 +149,7 @@ public class UserDaoImpl implements IUserDao{
 			ResultSet resultSet = preparedStatement.executeQuery();
 			
 			while(resultSet.next()) {
-				int idUser = resultSet.getInt("idUser");
+				int idUser = resultSet.getInt("id_user");
 				String nom = resultSet.getString("nom");
 				String prenom = resultSet.getString(3);
 				String email = resultSet.getString("email");
@@ -123,6 +163,8 @@ public class UserDaoImpl implements IUserDao{
 				users.add(user);
 				
 			}
+			
+			JDBCConnection.getInstance().close();
 			
 			return users;
 		} 

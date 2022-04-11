@@ -14,7 +14,7 @@ public class JDBCConnection {
 	
 	public Connection open () throws UMADBException {
 		
-		if (connection != null) return connection;
+		//if (connection != null) return connection;
 	
 		try {
 			

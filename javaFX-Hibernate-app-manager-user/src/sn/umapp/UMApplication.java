@@ -27,17 +27,6 @@ public class UMApplication extends Application {
 	
 	public static void main(String[] args) {
 		launch(args);
-		
-		try {
-			JDBCConnection.getInstance().open();
-			
-			System.out.println("Connexion à la base OK !");
-			
-			JDBCConnection.getInstance().close();
-		}
-		catch (UMADBException e) {
-			System.err.println(e.getMessage());
-		}
 	}
 	
 
@@ -48,11 +37,16 @@ public class UMApplication extends Application {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("User Management Application");
 		
-		dataSource = new DataSource();
-		
-		
-		initRootLayout();
-		showUserUI();
+		try {
+			
+			dataSource = new DataSource();
+			
+			initRootLayout();
+			showUserUI();
+			
+		} catch (UMADBException e) {
+			System.err.println(e.getMessage());
+		}
 		
 	}
 	
@@ -94,6 +88,7 @@ public class UMApplication extends Application {
 	public boolean showUserEditUI(User user) {
 		
 		try {
+			
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(UMApplication.class.getResource("ui/UserEditUI.fxml"));
 			AnchorPane page = (AnchorPane)loader.load();

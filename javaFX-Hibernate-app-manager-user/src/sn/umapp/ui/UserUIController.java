@@ -161,15 +161,15 @@ public class UserUIController {
 		
 		// recuperer l'index de l'utilisateur selectionné puis le supprimer de la liste
 		int selectedIndex = userTable.getSelectionModel().getSelectedIndex();
-		User selectedUser = userTable.getSelectionModel().getSelectedItem();
+		//User selectedUser = userTable.getSelectionModel().getSelectedItem();
 		
 		if (selectedIndex >= 0) {
 			
-			//int idUser = userTable.getItems().get(selectedIndex).getIdUser();
+			int idUser = userTable.getItems().get(selectedIndex).getIdUser();
 			
 			try {
 				
-				source.deleteUser(selectedUser.getIdUser());
+				source.deleteUser(idUser);
 				//source.deleteUser(idUser);
 				
 				users.remove(selectedIndex);
@@ -203,7 +203,6 @@ public class UserUIController {
 			try {
 				
 				source.add(user);
-				users.add(user);
 				
 			} 
 			catch (UMADBException e) {
@@ -216,13 +215,23 @@ public class UserUIController {
 	private void handleUpdateUser() {
 		
 		User selectedUser = userTable.getSelectionModel().getSelectedItem();
-		int indexUser = userTable.getSelectionModel().getSelectedIndex();
 		
 		if (selectedUser != null) {
+			
 			boolean validerClicked = UMApplication.getInstance().showUserEditUI(selectedUser);
+			
 			if (validerClicked) {
-				displayUserDetails(selectedUser);
-				userTable.refresh();
+				
+				try {
+					
+					source.update(selectedUser);
+					displayUserDetails(selectedUser);
+					userTable.refresh();
+					
+				}
+				catch (UMADBException e) {
+					System.err.println(e.getMessage());
+				}
 			}
 		}
 		else {

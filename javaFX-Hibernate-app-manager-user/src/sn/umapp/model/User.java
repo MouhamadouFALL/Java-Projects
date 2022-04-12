@@ -15,6 +15,7 @@ public class User {
 	private StringProperty password;
 	private StringProperty role;
 	
+	
 	public User(int idUser, String nom, String prenom, String email, String telephone, String login,
 			String password, String role) {
 		
@@ -52,8 +53,12 @@ public class User {
 		this.password = new SimpleStringProperty("passer");
 		this.role = new SimpleStringProperty(role);
 	}
-
-	public User() {}
+	
+	public User() {
+		this("", "", "", "", "SIMPLE USER");
+		this.login = new SimpleStringProperty("");
+		this.password = new SimpleStringProperty("");
+	}
 	
 	
 	//////////////////////////// genered getters and setters ///////////////////////////////////

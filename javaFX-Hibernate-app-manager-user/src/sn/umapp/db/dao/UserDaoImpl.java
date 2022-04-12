@@ -102,6 +102,9 @@ public class UserDaoImpl implements IUserDao{
 			preparedStatement.setString(6, user.getPassword().get());
 			preparedStatement.setString(7, user.getRole().get());
 			
+			preparedStatement.setInt(8, user.getIdUser());
+			
+			
 			preparedStatement.executeUpdate();
 			
 			JDBCConnection.getInstance().close();

@@ -42,15 +42,14 @@ public class UserUIController {
 	@FXML
 	private TextField rechercheTextField;
 	
-	ObservableList<User> users;
-	
 	DataSource source;
+	
+	ObservableList<User> users;
 	
 	// Constructeur
 	public UserUIController() {
 		// charger les utilisateurs dans la collection users
 		source = UMApplication.getInstance().getDataSource();
-		users = source.getUsers();
 	}
 	
 	/*
@@ -59,10 +58,12 @@ public class UserUIController {
 	 */
 	@FXML
 	public void initialize() {
+		
+		users = source.getUsers();
+		
 		// initializes the users table
 		nomColumn.setCellValueFactory(cellData -> cellData.getValue().getNom());
 		prenomColumn.setCellValueFactory(cellData -> cellData.getValue().getPrenom());
-		
 		
 		// 1-Envelopper ObservableList dans un FilteredList ( Afficher initialement toutes les données )
 		FilteredList <User> filteredData = new FilteredList<>(users, u -> true);
@@ -161,19 +162,14 @@ public class UserUIController {
 		
 		// recuperer l'index de l'utilisateur selectionné puis le supprimer de la liste
 		int selectedIndex = userTable.getSelectionModel().getSelectedIndex();
-		//User selectedUser = userTable.getSelectionModel().getSelectedItem();
+		int idUser = userTable.getSelectionModel().getSelectedItem().getIdUser();
 		
-		if (selectedIndex >= 0) {
-			
-			int idUser = userTable.getItems().get(selectedIndex).getIdUser();
+		if (idUser > 0) {
 			
 			try {
 				
 				source.deleteUser(idUser);
-				//source.deleteUser(idUser);
-				
 				users.remove(selectedIndex);
-				
 				
 			} 
 			catch (UMADBException e) {
@@ -201,13 +197,14 @@ public class UserUIController {
 		if (validerClicked) {
 			
 			try {
-				
 				source.add(user);
-				
+				initialize();
 			} 
 			catch (UMADBException e) {
 				System.err.println(e.getMessage());
 			}
+			
+			
 		}
 	}
 	

@@ -32,7 +32,7 @@ public class DataSource {
 		this.users.add(user);
 	}
 	
-	public void deleteUser(int id) throws UMADBException {
+	public void deleteUser(Integer id) throws UMADBException {
 		dao.delete(id);
 	}
 	

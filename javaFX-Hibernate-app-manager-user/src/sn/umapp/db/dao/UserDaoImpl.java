@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class UserDaoImpl implements IUserDao{
 		
 		try {
 			Connection conn = JDBCConnection.getInstance().open();
-			PreparedStatement preparedStatement = conn.prepareStatement(query);
+			PreparedStatement preparedStatement = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 			
 			preparedStatement.setString(1, user.getNom().get());
 			preparedStatement.setString(2, user.getPrenom().get());
@@ -33,10 +34,16 @@ public class UserDaoImpl implements IUserDao{
 			// retourne un boolean
 			//Boolean res = preparedStatement.execute();
 			
-			// pour les SQL statement
-			int numLigne = preparedStatement.executeUpdate();
-			// retourne un ResultSet
-			//ResultSet resultset = preparedStatement.executeQuery();
+			// insert into dataBase
+			preparedStatement.executeUpdate();
+			
+			// recupérer l"id autogénérer
+			ResultSet resultset = preparedStatement.getGeneratedKeys();
+			
+			if (resultset.next()) {
+				user.setIdUser((int) resultset.getLong(1));
+			}
+			
 			
 			JDBCConnection.getInstance().close();
 		} 

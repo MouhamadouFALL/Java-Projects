@@ -23,13 +23,13 @@ public class UserDaoImpl implements IUserDao{
 			Connection conn = JDBCConnection.getInstance().open();
 			PreparedStatement preparedStatement = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 			
-			preparedStatement.setString(1, user.getNom().get());
-			preparedStatement.setString(2, user.getPrenom().get());
-			preparedStatement.setString(3, user.getEmail().get());
-			preparedStatement.setString(4, user.getTelephone().get());
-			preparedStatement.setString(5, user.getLogin().get());
-			preparedStatement.setString(6, user.getPassword().get());
-			preparedStatement.setString(7, user.getRole().get());
+			preparedStatement.setString(1, user.getNom());
+			preparedStatement.setString(2, user.getPrenom());
+			preparedStatement.setString(3, user.getEmail());
+			preparedStatement.setString(4, user.getTelephone());
+			preparedStatement.setString(5, user.getLogin());
+			preparedStatement.setString(6, user.getPassword());
+			preparedStatement.setString(7, user.getRole());
 			
 			// retourne un boolean
 			//Boolean res = preparedStatement.execute();
@@ -101,13 +101,13 @@ public class UserDaoImpl implements IUserDao{
 			Connection conn = JDBCConnection.getInstance().open();
 			PreparedStatement preparedStatement = conn.prepareStatement(query);
 			
-			preparedStatement.setString(1, user.getNom().get());
-			preparedStatement.setString(2, user.getPrenom().get());
-			preparedStatement.setString(3, user.getEmail().get());
-			preparedStatement.setString(4, user.getTelephone().get());
-			preparedStatement.setString(5, user.getLogin().get());
-			preparedStatement.setString(6, user.getPassword().get());
-			preparedStatement.setString(7, user.getRole().get());
+			preparedStatement.setString(1, user.getNom());
+			preparedStatement.setString(2, user.getPrenom());
+			preparedStatement.setString(3, user.getEmail());
+			preparedStatement.setString(4, user.getTelephone());
+			preparedStatement.setString(5, user.getLogin());
+			preparedStatement.setString(6, user.getPassword());
+			preparedStatement.setString(7, user.getRole());
 			
 			preparedStatement.setInt(8, user.getIdUser());
 			

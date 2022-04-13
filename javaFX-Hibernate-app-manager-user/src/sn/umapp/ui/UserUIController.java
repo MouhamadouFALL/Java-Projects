@@ -1,5 +1,6 @@
 package sn.umapp.ui;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -62,8 +63,8 @@ public class UserUIController {
 		users = source.getUsers();
 		
 		// initializes the users table
-		nomColumn.setCellValueFactory(cellData -> cellData.getValue().getNom());
-		prenomColumn.setCellValueFactory(cellData -> cellData.getValue().getPrenom());
+		nomColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNom()));
+		prenomColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPrenom()));
 		
 		// 1-Envelopper ObservableList dans un FilteredList ( Afficher initialement toutes les données )
 		FilteredList <User> filteredData = new FilteredList<>(users, u -> true);
@@ -80,10 +81,10 @@ public class UserUIController {
 						// Compare first name and last name of every user with the filter text
 						String chaineRecherche = newValue.toLowerCase();
 						
-						if (user.getPrenom().get().toLowerCase().contains(chaineRecherche)) {
+						if (user.getPrenom().toLowerCase().contains(chaineRecherche)) {
 							return true; // Filter matches first name == filtre correspond au prenom
 						}
-						else if (user.getNom().get().toLowerCase().contains(chaineRecherche)) {
+						else if (user.getNom().toLowerCase().contains(chaineRecherche)) {
 							return true; // Filter matches last name == filtre correspond au nom
 						}
 						return false; //Does not match
@@ -122,13 +123,13 @@ public class UserUIController {
 		
 		if (user != null) {
 			// Fill the labels with info from the User object
-			this.nomLabel.setText(user.getNom().get());
-			this.prenomLabel.setText(user.getPrenom().get());
-			this.emailLabel.setText(user.getEmail().get());
-			this.telephoneLabel.setText(user.getTelephone().get());
-			this.loginLabel.setText(user.getLogin().get());
-			this.passwordLabel.setText(user.getPassword().get());
-			this.roleLabel.setText(user.getRole().get());
+			this.nomLabel.setText(user.getNom());
+			this.prenomLabel.setText(user.getPrenom());
+			this.emailLabel.setText(user.getEmail());
+			this.telephoneLabel.setText(user.getTelephone());
+			this.loginLabel.setText(user.getLogin());
+			this.passwordLabel.setText(user.getPassword());
+			this.roleLabel.setText(user.getRole());
 		}
 		else {
 			// User is null, remove all the text

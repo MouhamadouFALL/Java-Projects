@@ -1,6 +1,5 @@
 package sn.umapp.ui;
 
-import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -47,13 +46,13 @@ public class UserEditUIController {
 		
 		this.user = user;
 		
-		nomField.setText(user.getNom().get());
-		prenomField.setText(user.getPrenom().get());
-		emailField.setText(user.getEmail().get());
-		telephoneField.setText(user.getTelephone().get());
-		loginField.setText(user.getLogin().get());
-		passwordField.setText(user.getPassword().get());
-		roleComboBox.getSelectionModel().select(user.getRole().get());
+		nomField.setText(user.getNom());
+		prenomField.setText(user.getPrenom());
+		emailField.setText(user.getEmail());
+		telephoneField.setText(user.getTelephone());
+		loginField.setText(user.getLogin());
+		passwordField.setText(user.getPassword());
+		roleComboBox.getSelectionModel().select(user.getRole());
 	}
 	
 	//Called when the clicks on button valider
@@ -62,13 +61,13 @@ public class UserEditUIController {
 		
 		if (isInputValid()) {
 			
-			user.setNom(new SimpleStringProperty(nomField.getText()));
-			user.setPrenom(new SimpleStringProperty(prenomField.getText()));
-			user.setEmail(new SimpleStringProperty(emailField.getText()));
-			user.setTelephone(new SimpleStringProperty(telephoneField.getText()));
-			user.setLogin(new SimpleStringProperty(loginField.getText()));
-			user.setPassword(new SimpleStringProperty(passwordField.getText()));
-			user.setRole(new SimpleStringProperty(roleComboBox.getSelectionModel().getSelectedItem()));
+			user.setNom(nomField.getText());
+			user.setPrenom(prenomField.getText());
+			user.setEmail(emailField.getText());
+			user.setTelephone(telephoneField.getText());
+			user.setLogin(loginField.getText());
+			user.setPassword(passwordField.getText());
+			user.setRole(roleComboBox.getSelectionModel().getSelectedItem());
 			
 			validerClicked = true;
 			dialogStage.close();

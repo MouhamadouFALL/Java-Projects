@@ -15,6 +15,7 @@ public class Demo {
 		fruits.add("banane");
 		fruits.add("pomme");
 		fruits.add("raisins");
+		fruits.add("coco");
 		
 		// afficher la taille de la collections fruits
 		System.out.println(" Taille fruits : " + fruits.size());
@@ -27,9 +28,18 @@ public class Demo {
 		
 		// Iterer sur la collection fruits
 		Iterator<String> it = fruits.iterator();
+		
 		while(it.hasNext()) {
+			
+			// pattern pour supprimer un element d'une collection duant son itération
+			String str = it.next();
+			if (str.length() > 6) {
+				it.remove();
+			}
 			System.out.println(it.next());
 		}
+		
+		
 		System.out.println("============================================== Iterations avec for each ===============================");
 		// supprimer un fruits dans la collection fruits
 		fruits.remove("mangue");

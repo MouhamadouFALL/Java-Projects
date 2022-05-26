@@ -5,18 +5,17 @@ public class DemoTask {
 	public static void main(String[] args) {
 		
 		// implementation de l'interface Runnable
-		java.lang.Runnable task = () ->  System.out.println("Id : " + Thread.currentThread().getId() + " | Nom : " + Thread.currentThread().getName() + " | Priority : " + Thread.currentThread().getPriority() + " : je suis une tâche");
-		// exécuter la tâche
+		java.lang.Runnable task = () ->  System.out.println("Id : " + Thread.currentThread().getId() + " | Nom : " + Thread.currentThread().getName() + " | Priority : " + Thread.currentThread().getPriority() + " : I'm a task in a Thread");
+		// exï¿½cuter la tï¿½che
 		task.run();
 		
 		// construire un autre thread
 		Thread t = new Thread(task);
 		t.start();
 		
-		if (t.isDaemon())
+		if (t.isDaemon()) {
 			t.start();
-		else {
-			System.out.println("Id : " + Thread.currentThread().getId() + " | Nom : " + Thread.currentThread().getName() + " | Priority : " + Thread.currentThread().getPriority() + " : je suis une tâche");
+			System.out.println("Nom : " + t.currentThread().getName() + " | I'm not Daemon type");
 		}
 	}
 }

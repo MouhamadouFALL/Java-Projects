@@ -16,6 +16,7 @@ public class Subscriber {
 		this.nom = nom;
 		this.numero = numero;
 		this.adresse = adresse;
+		setActivated(false);
 	}
 	
 	public Subscriber(Integer id, String nom, String numero, String adresse, Boolean activated) {

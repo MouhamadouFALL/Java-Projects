@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+
+<configuration>
+
+	<web-service>
+		<package>sn.boom.javaws.services</package>
+		<name>WSAuthentificaion</name>
+		<host>http://localhost</host>
+		<port>8182</port>
+		<url>/services</url>
+	</web-service>
+	
+	<web-service>
+		<package>sn.boom.javaws.services</package>
+		<name>WSCreateSubscriberIN</name>
+		<host>http://localhost</host>
+		<port>8182</port>
+		<url>/services</url>
+	</web-service>
+	
+	<web-service>
+		<package>sn.boom.javaws.services</package>
+		<name>WSActivateSubscriberIN</name>
+		<host>http://localhost</host>
+		<port>8182</port>
+		<url>/services</url>
+	</web-service>
+	
+	<web-service>
+		<package>sn.boom.javaws.services</package>
+		<name>WSDeactivatedSubscriberIN</name>
+		<host>http://localhost</host>
+		<port>8182</port>
+		<url>/services</url>
+	</web-service>
+	
+	<web-service>
+		<package>sn.boom.javaws.services</package>
+		<name>WSDeleteSubscriberIN</name>
+		<host>http://localhost</host>
+		<port>8182</port>
+		<url>/services</url>
+	</web-service>
+	
+	<web-service>
+		<package>sn.boom.javaws.services</package>
+		<name>WSDisplaySubscriberIN</name>
+		<host>http://localhost</host>
+		<port>8182</port>
+		<url>/services</url>
+	</web-service>
+	
+</configuration>

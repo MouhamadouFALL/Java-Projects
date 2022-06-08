@@ -25,8 +25,6 @@ public class MonitorLauncher {
 			//Instanciation puis lancement du moniteur pour piloter les web services charges ...
 			Monitor monitor = new Monitor(webServices);
 			monitor.run();
-			
-			
 		}
 		catch(Exception e) {
 			JOptionPane.showMessageDialog(null, e.getMessage() == null ? e.getStackTrace() : e.getMessage(), 
